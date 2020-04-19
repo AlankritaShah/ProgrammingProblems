@@ -2,11 +2,30 @@ package DynamicProgramming.MagicIndex;
 
 public class MagicIndex {
 	private static int findMagicIndex(int[] arr) {
-		for(int i=0; i<arr.length; i++) {
-			if(arr[i] == i)
-				return i;
+		return magicFast(arr, 0, arr.length);
+	}
+	
+	public static int magicFast(int[] array, int start, int end) {
+		if (end < start) {
+			return -1;
 		}
-		return -1;
+		int midIndex = (start + end) / 2;
+		int midValue = array[midIndex];
+		if (midValue == midIndex) {
+			return midIndex;
+		}
+		/* Search left */
+		int leftIndex = Math.min(midIndex - 1, midValue);
+		int left = magicFast(array, start, leftIndex);
+		if (left >= 0) {
+			return left;
+		}
+		
+		/* Search right */
+		int rightIndex = Math.max(midIndex + 1, midValue);
+		int right = magicFast(array, rightIndex, end);
+		
+		return right;
 	}
 	
 	public static void main(String[] args) {
