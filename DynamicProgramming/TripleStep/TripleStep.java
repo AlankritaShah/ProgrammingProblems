@@ -1,4 +1,4 @@
-package DynamicProgramming;
+package DynamicProgramming.TripleStep;
 import java.util.HashMap;
 
 /**
@@ -26,7 +26,7 @@ public class TripleStep {
 	public static void main(String[] args)
 	{
 		long startTime = System.currentTimeMillis();
-		System.out.println(new TripleStep().getCountWays(2000));
+		System.out.println(new TripleStep().getCountWays(500));
 		long endTime = System.currentTimeMillis();
 		System.out.println("Took "+(endTime - startTime) + " ms"); 	
 	}
