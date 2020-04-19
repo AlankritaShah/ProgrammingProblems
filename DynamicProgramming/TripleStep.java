@@ -1,4 +1,5 @@
 package DynamicProgramming;
+import java.util.HashMap;
 
 /**
  * 
@@ -8,17 +9,25 @@ package DynamicProgramming;
  */
 
 public class TripleStep {
+	HashMap<Integer, Integer> map = new HashMap<>();
 	private int getCountWays(int n) {
 		if(n<0)
 			return 0;
 		else if(n==0)
 			return 1;
-		else
-			return getCountWays(n-1) + getCountWays(n-2) + getCountWays(n-3);
+		else if(map.containsKey(n))
+			return map.get(n);
+		else {
+			map.put(n, getCountWays(n-1) + getCountWays(n-2) + getCountWays(n-3));
+			return map.get(n);
+		}
 	}
 	
 	public static void main(String[] args)
 	{
-		System.out.println(new TripleStep().getCountWays(3));
+		long startTime = System.currentTimeMillis();
+		System.out.println(new TripleStep().getCountWays(2000));
+		long endTime = System.currentTimeMillis();
+		System.out.println("Took "+(endTime - startTime) + " ms"); 	
 	}
 }
